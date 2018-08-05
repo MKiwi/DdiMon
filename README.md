@@ -65,7 +65,7 @@ Technical difficulties
 
 	 Following picture describes way, how we obtain this address.
 
-![](https://raw.githubusercontent.com/MKiwi/DdiMon/master/path/pictures/ndis_structures_flow.png)
+![](https://raw.githubusercontent.com/MKiwi/LLNM/master/pictures/ndis_structures_flow.PNG)
 
 
 
