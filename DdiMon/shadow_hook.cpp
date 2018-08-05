@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2018, Satoshi Tanda. All rights reserved.
+// Copyright (c) 2015-2016, tandasat. All rights reserved.
 // Use of this source code is governed by a MIT-style license that can be
 // found in the LICENSE file.
 
@@ -42,7 +42,7 @@ struct Page {
   ~Page();
 };
 
-// Contains a single steal hook information
+// Contains a single steal thook information
 struct HookInformation {
   void* patch_address;  // An address where a hook is installed
   void* handler;        // An address of the handler routine
@@ -142,13 +142,13 @@ static bool ShpIsShadowHookActive(
     _In_ const SharedShadowHookData* shared_sh_data);
 
 #if defined(ALLOC_PRAGMA)
-#pragma alloc_text(PAGE, ShAllocateShadowHookData)
-#pragma alloc_text(PAGE, ShAllocateSharedShaowHookData)
-#pragma alloc_text(PAGE, ShEnableHooks)
-#pragma alloc_text(PAGE, ShInstallHook)
-#pragma alloc_text(PAGE, ShpSetupInlineHook)
-#pragma alloc_text(PAGE, ShpGetInstructionSize)
-#pragma alloc_text(PAGE, ShpMakeTrampolineCode)
+#pragma alloc_text(INIT, ShAllocateShadowHookData)
+#pragma alloc_text(INIT, ShAllocateSharedShaowHookData)
+#pragma alloc_text(INIT, ShEnableHooks)
+#pragma alloc_text(INIT, ShInstallHook)
+#pragma alloc_text(INIT, ShpSetupInlineHook)
+#pragma alloc_text(INIT, ShpGetInstructionSize)
+#pragma alloc_text(INIT, ShpMakeTrampolineCode)
 #pragma alloc_text(PAGE, ShFreeShadowHookData)
 #pragma alloc_text(PAGE, ShFreeSharedShadowHookData)
 #pragma alloc_text(PAGE, ShDisableHooks)
@@ -508,7 +508,7 @@ _Use_decl_annotations_ static void ShpEnablePageShadowingForExec(
   ept_pt_entry->fields.write_access = false;
   ept_pt_entry->fields.read_access = false;
 
-  // Only execution is allowed on the address. Show the copied page for exec
+  // Only execution is allowed on the adresss. Show the copied page for exec
   // that has an actual breakpoint to the guest.
   ept_pt_entry->fields.physial_address = UtilPfnFromPa(info.pa_base_for_exec);
 
